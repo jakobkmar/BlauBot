@@ -14,8 +14,8 @@ object Bingus: SlashCommand(
         interaction.acknowledge(true).followUp {
             embed {
                 title = "Bingus"
-                image = "https://media.tenor.co/videos/e37c4423a3db034d561e1a7c0fc2e4f9/mp4"
-                description = "An internet meme of a Sphynx cat with multiple filters to make the cat appear smooth, this cat has come to be known as ‘Bingus’ due to popularity"
+                image = "https://media.tenor.co/videos/e37c4423a3db034d561e1a7c0fc2e4f9/mp4https://i.kym-cdn.com/photos/images/newsfeed/001/920/524/12f.jpg"
+                description = "An internet meme of a Sphynx cat, this cat has come to be known as ‘Bingus’"
             }
         }
     }
