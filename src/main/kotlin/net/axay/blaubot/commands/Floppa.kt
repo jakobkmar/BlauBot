@@ -8,7 +8,7 @@ import net.axay.blaubot.commands.api.SlashCommand
 @KordPreview
 object Floppa : SlashCommand(
     "floppa",
-    "get Floppa"
+    "Get Floppa"
 ) {
     override suspend fun handleCommand(interaction: Interaction) {
         interaction.acknowledge(true).followUp {

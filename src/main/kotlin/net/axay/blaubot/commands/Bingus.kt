@@ -8,7 +8,7 @@ import net.axay.blaubot.commands.api.SlashCommand
 @KordPreview
 object Bingus: SlashCommand(
     "bingus",
-    "get bingus"
+    "Get bingus"
 ) {
     override suspend fun handleCommand(interaction: Interaction) {
         interaction.acknowledge(true).followUp {
