@@ -10,6 +10,7 @@ import net.axay.blaubot.commands.Admin
 import net.axay.blaubot.commands.Bingus
 import net.axay.blaubot.commands.Legenden
 import net.axay.blaubot.commands.Ping
+import net.axay.blaubot.commands.Floppa
 import net.axay.blaubot.commands.implementation.anime.AnimeSearch
 import net.axay.blaubot.commands.implementation.anime.AnimeTerms
 import net.axay.blaubot.commands.implementation.anime.RandomAnime
@@ -35,6 +36,7 @@ object CommandManager {
         RandomAnime
         AnimeSearch
         Bingus
+        Floppa
 
         cleanupGuilds()
         registerOnGuilds()
