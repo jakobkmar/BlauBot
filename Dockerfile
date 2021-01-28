@@ -7,7 +7,7 @@ ARG BUILD_DIR
 
 WORKDIR $BUILD_DIR
 COPY . .
-RUN chmod u+x ./gradlew
+RUN chmod +x ./gradlew
 RUN ./gradlew installDist --no-daemon
 
 
