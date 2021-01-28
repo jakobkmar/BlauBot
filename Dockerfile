@@ -7,6 +7,7 @@ ARG BUILD_DIR
 
 WORKDIR $BUILD_DIR
 COPY . .
+RUN chmod -R ug+rwx .
 RUN ./gradlew installDist
 
 
