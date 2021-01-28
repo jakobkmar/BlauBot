@@ -5,7 +5,6 @@ build/
 # IntelliJ IDEA
 .idea/
 
-config/
-
 # Secret
 gradle.properties
+config/
