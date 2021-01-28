@@ -7,8 +7,8 @@ ARG BUILD_DIR
 
 WORKDIR $BUILD_DIR
 COPY . .
-RUN chmod -R ug+rwx .
-RUN ./gradlew installDist
+RUN chmod u+x ./gradlew
+RUN ./gradlew installDist --no-daemon
 
 
 FROM openjdk:11-jre-slim
