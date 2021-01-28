@@ -7,6 +7,7 @@ import dev.kord.core.on
 import kotlinx.coroutines.flow.collect
 import net.axay.blaubot.Manager
 import net.axay.blaubot.commands.Admin
+import net.axay.blaubot.commands.Bingus
 import net.axay.blaubot.commands.Legenden
 import net.axay.blaubot.commands.Ping
 import net.axay.blaubot.commands.implementation.anime.AnimeSearch
@@ -33,6 +34,7 @@ object CommandManager {
         AnimeTerms
         RandomAnime
         AnimeSearch
+        Bingus
 
         cleanupGuilds()
         registerOnGuilds()
