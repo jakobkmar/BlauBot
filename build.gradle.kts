@@ -43,6 +43,14 @@ dependencies {
 }
 
 /**
+ * BUILD
+ */
+
+application {
+    mainClass.set("net.axay.blaubot.ManagerKt")
+}
+
+/**
  * JAVA VERSION
  */
 
