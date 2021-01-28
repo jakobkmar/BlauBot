@@ -85,7 +85,7 @@ private val animeList = listOf(
     "Gotoubun no Hanayome",
     "Grand Blue",
     "Great Pretender",
-    "Great Teacher Onizuka"
+    "Great Teacher Onizuka",
     "Gurren Lagann",
     "Haikyu!!",
     "Hataraku Maou-sama",
