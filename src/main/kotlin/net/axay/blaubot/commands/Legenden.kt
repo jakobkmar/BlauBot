@@ -9,7 +9,8 @@ import net.axay.blaubot.commands.api.SlashCommand
 private val legenden = mapOf(
     "Ryan Harter" to "Er ist eine Ktor Legende, Tech Talk Veteran und Pixite Developer.",
     "Sebastian Aigner" to "Er macht die besten Screencasts und ist einfach ein Talent, egal um welche Kotlin Library es sich handelt.",
-    "Kevin Chromik" to "Auf seinem Kanal geht alles rund um Softwareentwicklung, Studium und Karriere im Informatikbereich."
+    "Kevin Chromik" to "Auf seinem Kanal geht alles rund um Softwareentwicklung, Studium und Karriere im Informatikbereich.",
+    "3Digits" to "${Emojis.neutralFace}"
 )
 
 @KordPreview
