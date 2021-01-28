@@ -15,6 +15,7 @@ object Bingus: SlashCommand(
             embed {
                 title = "Bingus"
                 image = "https://media.tenor.co/videos/e37c4423a3db034d561e1a7c0fc2e4f9/mp4"
+                description = "Zeigt ein schönes Bingus GIF"
             }
         }
     }
