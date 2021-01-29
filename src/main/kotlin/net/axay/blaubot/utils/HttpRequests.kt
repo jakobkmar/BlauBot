@@ -13,6 +13,13 @@ enum class RequestMethod {
     GET, HEAD, POST, PUT, DELETE, CONNECT, OPTIONS, TRACE, PATCH
 }
 
+val jsonDeserializer = Json {
+    ignoreUnknownKeys = true
+
+    isLenient = true
+    allowSpecialFloatingPointValues = true
+}
+
 /**
  * Sends a HTTP request and parses the response as a string with given [charset].
  */
@@ -33,7 +40,7 @@ inline fun <reified T> httpJson(
     charset: Charset = Charsets.UTF_8
 ): T = httpRequest(url, method) {
     if (T::class.isSubclassOf(JsonElement::class)) {
-        val element = Json.parseToJsonElement(readText(charset))
+        val element = jsonDeserializer.parseToJsonElement(readText(charset))
         when {
             T::class.isSubclassOf(JsonPrimitive::class) -> element.jsonPrimitive
             T::class == JsonArray::class -> element.jsonArray
@@ -41,7 +48,7 @@ inline fun <reified T> httpJson(
             else -> element
         } as T
     } else {
-        Json.decodeFromString(readText())
+        jsonDeserializer.decodeFromString(readText())
     }
 }
 
