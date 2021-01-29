@@ -1,10 +1,8 @@
 package net.axay.blaubot.commands
 
-import dev.kord.common.Color
 import dev.kord.common.annotation.KordPreview
 import dev.kord.common.entity.Permission
 import dev.kord.common.entity.string
-import dev.kord.core.behavior.followUp
 import dev.kord.core.entity.interaction.Interaction
 import net.axay.blaubot.commands.api.SlashCommand
 
