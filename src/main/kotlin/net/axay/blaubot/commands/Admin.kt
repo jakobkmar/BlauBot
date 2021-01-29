@@ -16,6 +16,7 @@ object Admin : SlashCommand(
         subCommand("chat", "classified") {
             string("message", "classified")
         }
+        
         subCommand("embed", "classified") {
             string("title", "classified")
             string("message", "classified")
@@ -31,8 +32,9 @@ object Admin : SlashCommand(
         interaction.command.subCommands["chat"]?.options?.get("message")?.string()?.let {
             interaction.channel.createMessage(it)
         }
+        
         interaction.command.subCommands["embed"]?.options?.get("message")?.string()?.let {
-            interaction.acknowledge(true).followUp {
+            interaction.acknowledge(false).followUp {
                 embed {
                     title = interaction.command.subCommands["embed"]?.options?.get("title")?.string()
                     image = interaction.member.asUser().avatar.url
