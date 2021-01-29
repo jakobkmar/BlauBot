@@ -13,6 +13,7 @@ version = "0.0.1"
 
 plugins {
     kotlin("jvm") version "1.4.21"
+    kotlin("plugin.serialization") version "1.4.21"
 
     application
 }
@@ -28,12 +29,14 @@ repositories {
 }
 
 dependencies {
+    implementation(kotlin("reflect"))
 
     implementation("dev.kord:kord-core:0.7.0-SNAPSHOT")
     implementation("com.gitlab.kordlib:kordx.emoji:0.4.0")
 
     implementation("io.github.config4k:config4k:0.4.2")
 
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.1")
     implementation("com.google.code.gson:gson:2.8.6")
 
     implementation("org.slf4j:slf4j-simple:1.7.30")
