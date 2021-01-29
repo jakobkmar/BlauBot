@@ -29,18 +29,17 @@ object Admin : SlashCommand(
         if (interaction.member.asMemberOrNull()?.getPermissions()?.contains(Permission.Administrator) != true) return
 
         interaction.acknowledge(false)
+        
         interaction.command.subCommands["chat"]?.options?.get("message")?.string()?.let {
             interaction.channel.createMessage(it)
         }
         
-        interaction.command.subCommands["embed"]?.options?.get("message")?.string()?.let {
-            val embedOptions = interaction.command.subCommands["embed"]?.options
-            interaction.acknowledge(false).followUp {
-                embed {
-                    title = embedOptions?.get("title")?.string()
-                    image = interaction.member.asUser().avatar.url
-                    description = embedOptions?.get("message")?.string()
-                }
+        val embedOptions = interaction.command.subCommands["embed"]?.options
+        embedOptions?.get("message")?.string()?.let { message ->
+            interaction.channel.createEmbed {
+                title = embedOptions?.get("title")?.string()
+                image = interaction.member.asUser().avatar.url
+                description = message
             }
         }
 
