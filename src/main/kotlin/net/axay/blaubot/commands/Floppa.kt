@@ -15,7 +15,7 @@ object Floppa : SlashCommand(
             embed {
                 title = "Floppa"
                 image = "https://media.tenor.com/images/40401b6421797ab623387168d8ecc88d/tenor.gif"
-                description = "This is floppa. Some people even say that he is better than bingus."
+                description = "This is floppa. He is better than bingus."
             }
         }
     }
