@@ -6,11 +6,7 @@ import dev.kord.core.event.interaction.InteractionCreateEvent
 import dev.kord.core.on
 import kotlinx.coroutines.flow.collect
 import net.axay.blaubot.Manager
-import net.axay.blaubot.commands.Admin
-import net.axay.blaubot.commands.Bingus
-import net.axay.blaubot.commands.Legenden
-import net.axay.blaubot.commands.Ping
-import net.axay.blaubot.commands.Floppa
+import net.axay.blaubot.commands.*
 import net.axay.blaubot.commands.implementation.anime.AnimeSearch
 import net.axay.blaubot.commands.implementation.anime.AnimeTerms
 import net.axay.blaubot.commands.implementation.anime.RandomAnime
@@ -37,6 +33,7 @@ object CommandManager {
         AnimeSearch
         Bingus
         Floppa
+        Fox
 
         cleanupGuilds()
         registerOnGuilds()
