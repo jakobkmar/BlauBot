@@ -62,7 +62,7 @@ object AnimeSearch : SlashCommand(
             interaction.acknowledge(true).followUp {
 
                 val animeSearchResult = withContext(Dispatchers.IO) {
-                    httpJson<AnimeSearchResult>("https://kitsu.io/api/edge/anime?filter[text]=Dragonball")
+                    httpJson<AnimeSearchResult>("https://kitsu.io/api/edge/anime?filter[text]=$animeName")
                 }.data.firstOrNull()
 
                 if (animeSearchResult != null) {
