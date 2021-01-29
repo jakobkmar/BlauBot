@@ -34,6 +34,7 @@ object CommandManager {
         Bingus
         Floppa
         Fox
+        Dice
 
         cleanupGuilds()
         registerOnGuilds()
