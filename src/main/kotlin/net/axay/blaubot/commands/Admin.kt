@@ -14,6 +14,11 @@ object Admin : SlashCommand(
         subCommand("chat", "classified") {
             string("message", "classified")
         }
+        
+        subCommand("embed", "classified") {
+            string("title", "classified")
+            string("message", "classified")
+        }
     }
 ) {
 
@@ -22,8 +27,18 @@ object Admin : SlashCommand(
         if (interaction.member.asMemberOrNull()?.getPermissions()?.contains(Permission.Administrator) != true) return
 
         interaction.acknowledge(false)
+        
         interaction.command.subCommands["chat"]?.options?.get("message")?.string()?.let {
             interaction.channel.createMessage(it)
+        }
+        
+        val embedOptions = interaction.command.subCommands["embed"]?.options
+        embedOptions?.get("message")?.string()?.let { message ->
+            interaction.channel.createEmbed {
+                title = embedOptions?.get("title")?.string()
+                image = interaction.member.asUser().avatar.url
+                description = message
+            }
         }
 
     }
