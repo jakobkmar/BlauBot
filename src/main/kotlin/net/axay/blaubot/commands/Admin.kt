@@ -32,11 +32,12 @@ object Admin : SlashCommand(
             interaction.channel.createMessage(it)
         }
         interaction.command.subCommands["embed"]?.options?.get("message")?.string()?.let {
+            val embedOptions = interaction.command.subCommands["embed"]?.options
             interaction.acknowledge(true).followUp {
                 embed {
-                    title = interaction.command.subCommands["embed"]?.options?.get("title")?.string()
+                    title = embedOptions?.get("title")?.string()
                     image = interaction.member.asUser().avatar.url
-                    description = it
+                    description = embedOptions?.get("message")?.string()
                 }
             }
         }
