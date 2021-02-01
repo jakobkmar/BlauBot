@@ -11,13 +11,13 @@ object PlayerSkin : SlashCommand(
     "playerskin",
     "Get the skin of the given player",
     {
-        string("playerName", "Name of the player") {
+        string("name", "Name of the player") {
             required = true
         }
     }
 ) {
     override suspend fun handleCommand(interaction: Interaction) {
-        val playerName = interaction.command.options["playerName"]?.string()
+        val playerName = interaction.command.options["name"]?.string()
         if (playerName != null) {
             interaction.acknowledge(true).followUp {
                 embed {
