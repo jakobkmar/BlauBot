@@ -21,8 +21,9 @@ object PlayerSkin : SlashCommand(
         if (playerName != null) {
             interaction.acknowledge(true).followUp {
                 embed {
-                   title = playerName
-                   image = "https://minecraft-api.com/api/skins/$playerName/body/10.8/"
+                    title = playerName
+                    description = "This is the skin of $playerName"
+                    image = "https://minecraft-api.com/api/skins/$playerName/body/10.8/"
                 }
             }
         }
