@@ -35,6 +35,7 @@ object CommandManager {
         Floppa
         Fox
         Dice
+        PlayerSkin
 
         cleanupGuilds()
         registerOnGuilds()
