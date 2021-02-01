@@ -1,4 +1,4 @@
-package net.axay.blaubot.commands
+package net.axay.blaubot.commands.implementation
 
 import dev.kord.common.annotation.KordPreview
 import dev.kord.common.entity.Permission

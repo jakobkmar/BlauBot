@@ -1,4 +1,4 @@
-package net.axay.blaubot.commands
+package net.axay.blaubot.commands.implementation
 
 import com.gitlab.kordlib.kordx.emoji.Emojis
 import dev.kord.common.annotation.KordPreview
