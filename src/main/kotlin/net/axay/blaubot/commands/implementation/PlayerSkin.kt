@@ -23,7 +23,7 @@ object PlayerSkin : SlashCommand(
                 embed {
                     title = playerName
                     description = "This is the skin of $playerName"
-                    image = "https://minecraft-api.com/api/skins/$playerName/body/10.8/"
+                    image = "https://minecraftskinstealer.com/api/v1/skin/render/fullbody/$playerName/700"
                 }
             }
         }
