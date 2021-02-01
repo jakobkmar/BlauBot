@@ -2,6 +2,8 @@ package net.axay.blaubot.commands.api
 
 import dev.kord.common.annotation.KordPreview
 import dev.kord.core.behavior.createApplicationCommand
+import dev.kord.core.entity.Guild
+import dev.kord.core.event.guild.GuildCreateEvent
 import dev.kord.core.event.interaction.InteractionCreateEvent
 import dev.kord.core.on
 import kotlinx.coroutines.flow.collect
@@ -40,6 +42,13 @@ object CommandManager {
         cleanupGuilds()
         registerOnGuilds()
 
+        // add commands to new guilds
+        Manager.client.on<GuildCreateEvent> {
+            this.guild.cleanupCommands()
+            this.guild.registerCommands()
+        }
+
+        // handle interactions
         Manager.client.on<InteractionCreateEvent> {
             commands[interaction.command.name]?.handleCommand(interaction)
         }
@@ -48,23 +57,25 @@ object CommandManager {
     /**
      * Register all known commands on the guilds.
      */
-    private suspend fun registerOnGuilds() {
-        Manager.client.guilds.collect {
-            commands.forEach { commandEntry ->
-                val command = commandEntry.value
-                it.createApplicationCommand(command.name, command.description) { command.builder.invoke(this) }
-            }
-        }
-    }
+    private suspend fun registerOnGuilds() = Manager.client.guilds.collect { it.registerCommands() }
 
     /**
      * Remove unknown commands from guilds.
      */
-    private suspend fun cleanupGuilds() {
-        Manager.client.guilds.collect { it.commands.collect { command ->
-            if (!commands.containsKey(command.name))
+    private suspend fun cleanupGuilds() = Manager.client.guilds.collect { it.cleanupCommands() }
+
+    private suspend fun Guild.registerCommands() {
+        CommandManager.commands.forEach { commandEntry ->
+            val command = commandEntry.value
+            createApplicationCommand(command.name, command.description) { command.builder.invoke(this) }
+        }
+    }
+
+    private suspend fun Guild.cleanupCommands() {
+        commands.collect { command ->
+            if (!CommandManager.commands.containsKey(command.name))
                 command.delete()
-        } }
+        }
     }
 
 }
