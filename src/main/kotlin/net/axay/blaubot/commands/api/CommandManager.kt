@@ -8,7 +8,7 @@ import dev.kord.core.event.interaction.InteractionCreateEvent
 import dev.kord.core.on
 import kotlinx.coroutines.flow.collect
 import net.axay.blaubot.Manager
-import net.axay.blaubot.commands.implementation.*
+import net.axay.blaubot.commands.*
 import net.axay.blaubot.commands.implementation.anime.AnimeSearch
 import net.axay.blaubot.commands.implementation.anime.AnimeTerms
 import net.axay.blaubot.commands.implementation.anime.RandomAnime
@@ -38,6 +38,7 @@ object CommandManager {
         Fox
         Dice
         PlayerSkin
+        Contribute
 
         cleanupGuilds()
         registerOnGuilds()
