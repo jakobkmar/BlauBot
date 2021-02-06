@@ -2,6 +2,7 @@ services:
 
   blaubot:
     image: bluefireoly/blaubot:latest
+    restart: unless-stopped
     volumes:
       - ./config:/app/config/
 
