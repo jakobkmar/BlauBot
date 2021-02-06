@@ -11,6 +11,6 @@ object Contribute : SlashCommand(
 ) {
     override suspend fun handleCommand(interaction: Interaction) {
         interaction.acknowledge(true)
-        interaction.channel.createMessage("Go to the following GitHub repository to contribute to the bot. A contribution can be a whole new command or feature, but also an issue or feature request (if you cannot code). https://github.com/bluefireoly/BlauBot!")
+        interaction.channel.createMessage("Go to the following GitHub repository to contribute to the bot. A contribution can be a whole new command or feature, but also an issue or feature request (if you cannot code). https://github.com/bluefireoly/BlauBot")
     }
 }
