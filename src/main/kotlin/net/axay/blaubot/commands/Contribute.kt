@@ -7,10 +7,10 @@ import net.axay.blaubot.commands.api.SlashCommand
 @KordPreview
 object Contribute : SlashCommand(
     "contribute",
-    "Shows how to contribute to the bot"
+    "Gives you the link to the GitHub repository of the bot"
 ) {
     override suspend fun handleCommand(interaction: Interaction) {
         interaction.acknowledge(true)
-        interaction.channel.createMessage("Hier kannst du dich am Bot beteiligen: https://github.com/bluefireoly/BlauBot!")
+        interaction.channel.createMessage("Go to the following GitHub repository to contribute to the bot. A contribution can be a whole new command or feature, but also an issue or feature request (if you cannot code). https://github.com/bluefireoly/BlauBot!")
     }
 }
