@@ -22,7 +22,7 @@ dependencies {
     implementation(kotlin("reflect"))
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.3")
 
-    implementation("com.kotlindiscord.kord.extensions:kord-extensions:1.4.0-RC7")
+    implementation("com.kotlindiscord.kord.extensions:kord-extensions:1.4.0-SNAPSHOT")
     implementation("com.gitlab.kordlib:kordx.emoji:0.4.0")
 
     implementation("io.github.config4k:config4k:0.4.2")
