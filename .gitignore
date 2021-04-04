@@ -2,9 +2,8 @@
 .gradle/
 build/
 
-# IntelliJ IDEA
+# IDE
 .idea/
 
 # Secret
-gradle.properties
-/config/
+config/

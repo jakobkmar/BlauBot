@@ -1,10 +1,11 @@
-package net.axay.blaubot.commands.implementation.anime
+package net.axay.blaubot.commands.implementation
 
+import com.kotlindiscord.kord.extensions.ExtensibleBot
+import com.kotlindiscord.kord.extensions.commands.parser.Arguments
+import com.kotlindiscord.kord.extensions.commands.slash.converters.stringChoice
+import com.kotlindiscord.kord.extensions.extensions.Extension
 import dev.kord.common.annotation.KordPreview
-import dev.kord.common.entity.string
-import dev.kord.core.behavior.followUp
-import dev.kord.core.entity.interaction.Interaction
-import net.axay.blaubot.commands.api.SlashCommand
+import net.axay.blaubot.commands.api.testGuild
 
 private val otakuTerms = mapOf(
     "Senpai" to "Wird direkt in \"Senior\" übersetzt, bezieht sich aber technisch auf jemanden, der mehr Erfahrung als du in Bezug auf Beschäftigung, Schule oder etwas anderes hat.",
@@ -20,36 +21,33 @@ private val otakuTerms = mapOf(
 )
 
 @KordPreview
-object AnimeTerms : SlashCommand(
-    "animeterms",
-    "Explains otaku terms to you",
-    {
-        string("term", "The term you would like to have explained") {
-            required = true
-            for (it in otakuTerms)
-                choice(it.key, it.key)
-        }
-    }
-) {
+class AnimeTerms(bot: ExtensibleBot) : Extension(bot) {
+    override val name = "animeterms_command"
 
-    override suspend fun handleCommand(interaction: Interaction) {
-        val termName = interaction.command.subCommands["terms"]?.options?.get("term")?.string()
-        if (termName != null) {
-            val termInfo = otakuTerms[termName]
-            if (termInfo != null) {
-                interaction.acknowledge(true).followUp {
+    private class Args : Arguments() {
+        val term by stringChoice("term", "The term you would like to have explained", otakuTerms.keys.map { it to it }.toMap())
+    }
+
+    override suspend fun setup() {
+        slashCommand(::Args) {
+            testGuild()
+
+            name = "anime"
+            description = "Explains otaku terms to you"
+
+            action {
+                followUp {
                     embed {
                         title = "Anime Begriffsinformation"
                         field {
-                            name = termName
-                            value = termInfo
+                            name = arguments.term
+                            value = otakuTerms[arguments.term].toString()
                         }
                     }
                 }
             }
         }
     }
-
 }
 
 // disabled:

@@ -1,26 +1,32 @@
 package net.axay.blaubot.commands.implementation
 
 import com.gitlab.kordlib.kordx.emoji.Emojis
+import com.kotlindiscord.kord.extensions.ExtensibleBot
+import com.kotlindiscord.kord.extensions.extensions.Extension
 import dev.kord.common.annotation.KordPreview
-import dev.kord.core.entity.interaction.Interaction
-import net.axay.blaubot.commands.api.SlashCommand
+import dev.kord.core.behavior.channel.MessageChannelBehavior
 import kotlin.random.Random
 
 @KordPreview
-object Ping : SlashCommand(
-    "ping",
-    "Play table tennis with the bot"
-) {
+class Ping(bot: ExtensibleBot) : Extension(bot) {
+    override val name = "ping_command"
 
-    override suspend fun handleCommand(interaction: Interaction) {
-        interaction.acknowledge(true)
-        if (Random.nextInt(6) == 1) {
-            interaction.channel.createMessage("Peng!")
-            interaction.channel.createMessage("${Emojis.fullMoonWithFace}${Emojis.gun}")
-        } else {
-            interaction.channel.createMessage("${Emojis.pingPong}")
-            interaction.channel.createMessage("Pong! ${Emojis.grinning}")
+    override suspend fun setup() {
+        slashCommand {
+            name = "ping"
+            description = "Play table tennis with the bot"
+
+            action {
+                val textChannel = channel
+                if (textChannel is MessageChannelBehavior) {
+                    val peng = Random.nextInt(6) == 1
+                    followUp(if (peng) "Peng!" else "${Emojis.pingPong}")
+                    if (peng)
+                        textChannel.createMessage("${Emojis.fullMoonWithFace}${Emojis.gun}")
+                    else
+                        textChannel.createMessage("Pong! ${Emojis.grinning}")
+                }
+            }
         }
     }
-
 }
