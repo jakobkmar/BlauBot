@@ -17,16 +17,14 @@ class Ping(bot: ExtensibleBot) : Extension(bot) {
             description = "Play table tennis with the bot"
 
             action {
-                followUp(" ")
                 val textChannel = channel
                 if (textChannel is MessageChannelBehavior) {
-                    if (Random.nextInt(6) == 1) {
-                        textChannel.createMessage("Peng!")
+                    val peng = Random.nextInt(6) == 1
+                    followUp(if (peng) "Peng!" else "${Emojis.pingPong}")
+                    if (peng)
                         textChannel.createMessage("${Emojis.fullMoonWithFace}${Emojis.gun}")
-                    } else {
-                        textChannel.createMessage("${Emojis.pingPong}")
+                    else
                         textChannel.createMessage("Pong! ${Emojis.grinning}")
-                    }
                 }
             }
         }
