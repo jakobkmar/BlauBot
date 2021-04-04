@@ -1,10 +1,9 @@
-package net.axay.blaubot.commands.implementation.anime
+package net.axay.blaubot.commands.implementation
 
 import com.gitlab.kordlib.kordx.emoji.Emojis
+import com.kotlindiscord.kord.extensions.ExtensibleBot
+import com.kotlindiscord.kord.extensions.extensions.Extension
 import dev.kord.common.annotation.KordPreview
-import dev.kord.core.behavior.followUp
-import dev.kord.core.entity.interaction.Interaction
-import net.axay.blaubot.commands.api.SlashCommand
 
 private val animeList = listOf(
     "2.43: Seiin High School Boys Volleyball Club",
@@ -186,22 +185,26 @@ private val animeList = listOf(
 )
 
 @KordPreview
-object RandomAnime : SlashCommand(
-    "randomanime",
-    "Pick a random anime from our list"
-) {
+class RandomAnime(bot: ExtensibleBot) : Extension(bot) {
+    override val name = "randomanime_command"
 
-    override suspend fun handleCommand(interaction: Interaction) {
-        interaction.acknowledge(true).followUp {
-            embed {
-                title = "Der Zufall entscheidet - Welcher Anime?"
-                field {
-                    val random = animeList.random()
-                    name = random
-                    value = "Cool, da hat sich der Bot wohl für $random entschieden ${Emojis.slightSmile}! Viel Spaß damit!"
+    override suspend fun setup() {
+        slashCommand {
+            name = "randomanime"
+            description = "Picks a random anime from a predefined list"
+
+            action {
+                followUp {
+                    embed {
+                        title = "Der Zufall entscheidet - Welcher Anime?"
+                        field {
+                            val random = animeList.random()
+                            name = random
+                            value = "Cool, da hat sich der Bot wohl für $random entschieden ${Emojis.slightSmile}! Viel Spaß damit!"
+                        }
+                    }
                 }
             }
         }
     }
-
 }

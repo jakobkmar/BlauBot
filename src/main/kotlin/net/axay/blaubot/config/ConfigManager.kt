@@ -6,7 +6,6 @@ import net.axay.blaubot.config.data.DiscordApplication
 import java.io.File
 
 object ConfigManager {
-
     class ConfigFile(path: String) : File(path) {
         init {
             if (!parentFile.exists()) parentFile.mkdirs()
@@ -16,5 +15,4 @@ object ConfigManager {
 
     val discordApplication =
         ConfigFactory.parseFile(ConfigFile("./config/discordApplication.conf")).extract<DiscordApplication>()
-
 }
