@@ -194,7 +194,7 @@ class RandomAnime(bot: ExtensibleBot) : Extension(bot) {
             description = "Picks a random anime from a predefined list"
 
             action {
-                followUp {
+                publicFollowUp {
                     embed {
                         title = "Der Zufall entscheidet - Welcher Anime?"
                         field {
