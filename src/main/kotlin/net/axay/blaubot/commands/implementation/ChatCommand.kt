@@ -1,40 +1,36 @@
 package net.axay.blaubot.commands.implementation
 
-import com.kotlindiscord.kord.extensions.ExtensibleBot
-import com.kotlindiscord.kord.extensions.commands.converters.string
-import com.kotlindiscord.kord.extensions.commands.parser.Arguments
-import com.kotlindiscord.kord.extensions.extensions.Extension
-import com.kotlindiscord.kord.extensions.utils.hasPermission
 import dev.kord.common.annotation.KordPreview
 import dev.kord.common.entity.Permission
-import dev.kord.core.behavior.channel.MessageChannelBehavior
+import dev.kord.core.behavior.interaction.followUp
+import dev.kord.core.entity.interaction.Interaction
+import dev.kord.core.entity.interaction.InteractionCommand
+import dev.kord.core.entity.interaction.string
+import net.axay.blaubot.commands.api.SlashCommand
 
 @KordPreview
-class ChatCommand(bot: ExtensibleBot) : Extension(bot) {
-    override val name = "chat_command"
-
-    private class Args : Arguments() {
-        val message by string("message", "The message which should be send")
+object ChatCommand : SlashCommand(
+    "chat",
+    "Allows you to chat via the bot",
+    {
+        string("message", "The message which should be send")
     }
+) {
+    override suspend fun execute(interaction: Interaction, command: InteractionCommand) {
+        val isAdmin = interaction.user.asMemberOrNull(interaction.data.guildId.value ?: return)
+            ?.getPermissions()?.contains(Permission.Administrator) == true
 
-    override suspend fun setup() {
-        slashCommand(::Args) {
-            name = "chat"
-            description = "Allows you to chat via the bot"
+        if (isAdmin) {
+            val message = command.options["message"]?.string().orEmpty()
 
-            check {
-                it.interaction.user.asMemberOrNull(it.interaction.data.guildId.value ?: return@check false)
-                    ?.hasPermission(Permission.Administrator) == true
-            }
+            val response = interaction.ackowledgePublic()
+            response.followUp {
+                content = message
+            }.delete()
 
-            action {
-                // temporarily, this is needed to remove the response design
-                publicFollowUp {
-                    content = arguments.message
-                }.delete()
-
-                channel.createMessage(arguments.message)
-            }
+            interaction.channel.createMessage(message)
+        } else {
+            interaction.acknowledgeEphemeral().followUp("Insufficient permissions")
         }
     }
 }

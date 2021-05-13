@@ -12,18 +12,15 @@ plugins {
 
 repositories {
     mavenCentral()
-    maven {
-        name = "Kotlin Discord"
-        url = uri("https://maven.kotlindiscord.com/repository/maven-public/")
-    }
+    maven("https://oss.sonatype.org/content/repositories/snapshots")
 }
 
 dependencies {
     implementation(kotlin("reflect"))
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.3")
 
-    implementation("com.kotlindiscord.kord.extensions:kord-extensions:1.4.0-SNAPSHOT")
-    implementation("com.gitlab.kordlib:kordx.emoji:0.4.0")
+    implementation("dev.kord:kord-core:0.7.0-RC3")
+    implementation("dev.kord.x:emoji:0.5.0-SNAPSHOT")
 
     implementation("io.github.config4k:config4k:0.4.2")
 
