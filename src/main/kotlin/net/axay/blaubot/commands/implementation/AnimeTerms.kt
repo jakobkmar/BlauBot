@@ -36,7 +36,7 @@ class AnimeTerms(bot: ExtensibleBot) : Extension(bot) {
             description = "Explains otaku terms to you"
 
             action {
-                followUp {
+                publicFollowUp {
                     embed {
                         title = "Anime Begriffsinformation"
                         field {

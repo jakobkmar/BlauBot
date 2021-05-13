@@ -14,7 +14,9 @@ class Contribute(bot: ExtensibleBot) : Extension(bot) {
             description = "Shows you how you can contribute to the bot"
 
             action {
-                followUp("Go to the following GitHub repository to contribute to the bot. A contribution can be a whole new command or feature, but also an issue or feature request (if you cannot code). https://github.com/bluefireoly/BlauBot")
+                publicFollowUp {
+                    content = "Go to the following GitHub repository to contribute to the bot. A contribution can be a whole new command or feature, but also an issue or feature request (if you cannot code). https://github.com/bluefireoly/BlauBot"
+                }
             }
         }
     }

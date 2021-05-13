@@ -29,7 +29,7 @@ class Legends(bot: ExtensibleBot) : Extension(bot) {
             description = "This command informs you about some selected legends"
 
             action {
-                followUp {
+                publicFollowUp {
                     embed {
                         field {
                             name = arguments.name

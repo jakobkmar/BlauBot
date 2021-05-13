@@ -18,9 +18,11 @@ class Fox(bot: ExtensibleBot) : Extension(bot) {
             description = "Shows a cool fox for your enjoyment"
 
             action {
-                followUp(withContext(Dispatchers.IO) {
-                    httpJson<RandomFox>("https://randomfox.ca/floof/").image
-                })
+                publicFollowUp {
+                    content = withContext(Dispatchers.IO) {
+                        httpJson<RandomFox>("https://randomfox.ca/floof/").image
+                    }
+                }
             }
         }
     }

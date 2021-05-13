@@ -20,7 +20,7 @@ class Floppa(bot: ExtensibleBot) : Extension(bot) {
             description = "Shows floppa to you"
 
             action {
-                followUp {
+                publicFollowUp {
                     embed {
                         title = "Floppa"
                         image = floppaImages.random()

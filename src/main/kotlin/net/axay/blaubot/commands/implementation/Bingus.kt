@@ -14,7 +14,7 @@ class Bingus(bot: ExtensibleBot) : Extension(bot) {
             description = "Shows bingus to you"
 
             action {
-                followUp {
+                publicFollowUp {
                     embed {
                         title = "Bingus"
                         image = "https://i.kym-cdn.com/photos/images/newsfeed/001/920/524/12f.jpg"

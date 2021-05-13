@@ -27,7 +27,7 @@ class AnimeSearch(bot: ExtensibleBot) : Extension(bot) {
             description = "Get information about any anime"
 
             action {
-                followUp {
+                publicFollowUp {
                     val animeSearchResult = withContext(Dispatchers.IO) {
                         httpJson<Array<AnimeSearchResult>>("https://kitsu.io/api/edge/anime?filter[text]=${arguments.searchTerm}")
                     }.firstOrNull()

@@ -29,11 +29,11 @@ class ChatCommand(bot: ExtensibleBot) : Extension(bot) {
 
             action {
                 // temporarily, this is needed to remove the response design
-                followUp(arguments.message).delete()
+                publicFollowUp {
+                    content = arguments.message
+                }.delete()
 
-                val textChannel = channel
-                if (textChannel is MessageChannelBehavior)
-                    textChannel.createMessage(arguments.message)
+                channel.createMessage(arguments.message)
             }
         }
     }

@@ -20,7 +20,7 @@ class PlayerSkin(bot: ExtensibleBot) : Extension(bot) {
             description = "Shows you the skin of the given player"
 
             action {
-                followUp {
+                publicFollowUp {
                     embed {
                         val playerName = arguments.playername
                         title = playerName
