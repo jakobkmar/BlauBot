@@ -2,6 +2,7 @@ package net.axay.blaubot.commands.implementation
 
 import dev.kord.common.annotation.KordPreview
 import dev.kord.core.behavior.channel.createEmbed
+import dev.kord.core.behavior.interaction.followUp
 import dev.kord.core.entity.interaction.Interaction
 import dev.kord.core.entity.interaction.InteractionCommand
 import dev.kord.x.emoji.Emojis
@@ -23,7 +24,7 @@ object Dice : SlashCommand(
     )
 
     override suspend fun execute(interaction: Interaction, command: InteractionCommand) {
-        interaction.acknowledgeEphemeral()
+        val ack = interaction.ackowledgePublic()
 
         val loadingImg = interaction.channel.createEmbed {
             image = "https://www.animierte-gifs.net/data/media/710/animiertes-wuerfel-bild-0104.gif"
@@ -33,11 +34,13 @@ object Dice : SlashCommand(
 
         loadingImg.delete()
 
-        interaction.channel.createEmbed {
-            title = "You rolled the dice"
-            field {
-                name = "Result"
-                value = "${Emojis.flushed} ${Emojis.pointRight} ${numberEmojis.random()}"
+        ack.followUp {
+            embed {
+                title = "You rolled the dice"
+                field {
+                    name = "Result"
+                    value = "${Emojis.flushed} ${Emojis.pointRight} ${numberEmojis.random()}"
+                }
             }
         }
     }
