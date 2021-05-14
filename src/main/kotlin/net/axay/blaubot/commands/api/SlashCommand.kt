@@ -10,6 +10,7 @@ abstract class SlashCommand(
     val name: String,
     val description: String,
     val builder: ApplicationCommandCreateBuilder.() -> Unit = { },
+    val test: Boolean = false,
 ) {
     init {
         @Suppress("LeakingThis")
