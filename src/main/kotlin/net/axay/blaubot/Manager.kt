@@ -26,5 +26,7 @@ suspend fun main() {
 
     CommandRegistry.applyToBot(bot)
 
+    println("Logging in...")
+
     bot.login()
 }
