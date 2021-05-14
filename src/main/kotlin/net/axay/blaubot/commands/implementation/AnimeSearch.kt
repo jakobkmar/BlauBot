@@ -18,7 +18,8 @@ object AnimeSearch : SlashCommand(
     "Get information about any anime",
     {
         string("searchterm", "The search input")
-    }
+    },
+    test = true
 ) {
     override suspend fun execute(interaction: Interaction, command: InteractionCommand) {
         val searchterm = command.options["searchterm"]?.string().orEmpty()
