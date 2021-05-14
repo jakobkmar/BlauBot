@@ -1,33 +1,27 @@
 package net.axay.blaubot.commands.implementation
 
-import com.kotlindiscord.kord.extensions.ExtensibleBot
-import com.kotlindiscord.kord.extensions.commands.converters.string
-import com.kotlindiscord.kord.extensions.commands.parser.Arguments
-import com.kotlindiscord.kord.extensions.extensions.Extension
 import dev.kord.common.annotation.KordPreview
+import dev.kord.core.behavior.interaction.followUp
+import dev.kord.core.entity.interaction.Interaction
+import dev.kord.core.entity.interaction.InteractionCommand
+import dev.kord.core.entity.interaction.string
+import net.axay.blaubot.commands.api.SlashCommand
 
 @KordPreview
-class PlayerSkin(bot: ExtensibleBot) : Extension(bot) {
-    override val name = "playerskin_command"
-
-    private class Args : Arguments() {
-        val playername by string("playername", "The name of the player")
+object PlayerSkin : SlashCommand(
+    "playerskin",
+    "Shows you the skin of the given player",
+    {
+        string("playername", "The name of the player")
     }
-
-    override suspend fun setup() {
-        slashCommand(::Args) {
-            name = "playerskin"
-            description = "Shows you the skin of the given player"
-
-            action {
-                publicFollowUp {
-                    embed {
-                        val playerName = arguments.playername
-                        title = playerName
-                        description = "This is the skin of $playerName"
-                        image = "https://minecraftskinstealer.com/api/v1/skin/render/fullbody/$playerName/700"
-                    }
-                }
+) {
+    override suspend fun execute(interaction: Interaction, command: InteractionCommand) {
+        interaction.ackowledgePublic().followUp {
+            embed {
+                val playerName = command.options["playername"]?.string().orEmpty()
+                title = playerName
+                description = "This is the skin of $playerName"
+                image = "https://minecraftskinstealer.com/api/v1/skin/render/fullbody/$playerName/700"
             }
         }
     }

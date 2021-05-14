@@ -1,28 +1,24 @@
 package net.axay.blaubot.commands.implementation
 
-import com.kotlindiscord.kord.extensions.ExtensibleBot
-import com.kotlindiscord.kord.extensions.extensions.Extension
 import dev.kord.common.annotation.KordPreview
+import dev.kord.core.behavior.interaction.followUp
+import dev.kord.core.entity.interaction.Interaction
+import dev.kord.core.entity.interaction.InteractionCommand
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.Serializable
+import net.axay.blaubot.commands.api.SlashCommand
 import net.axay.blaubot.utils.httpJson
 
 @KordPreview
-class Fox(bot: ExtensibleBot) : Extension(bot) {
-    override val name = "fox_command"
-
-    override suspend fun setup() {
-        slashCommand {
-            name = "fox"
-            description = "Shows a cool fox for your enjoyment"
-
-            action {
-                publicFollowUp {
-                    content = withContext(Dispatchers.IO) {
-                        httpJson<RandomFox>("https://randomfox.ca/floof/").image
-                    }
-                }
+object Fox : SlashCommand(
+    "fox",
+    "Shows a cool fox for your enjoyment"
+) {
+    override suspend fun execute(interaction: Interaction, command: InteractionCommand) {
+        interaction.ackowledgePublic().followUp {
+            content = withContext(Dispatchers.IO) {
+                httpJson<RandomFox>("https://randomfox.ca/floof/").image
             }
         }
     }
