@@ -20,6 +20,12 @@ object CommandRegistry {
             if (!slashCommand.test)
                 kord.createGlobalApplicationCommand(slashCommand.name, slashCommand.description, slashCommand.builder)
         }
+        launch {
+            kord.globalCommands.collect {
+                if (!registeredCommands.containsKey(it.name))
+                    it.delete()
+            }
+        }
         println("Set up global commands")
 
         val testguild = kord.getGuild(Snowflake(738122976280707125))
