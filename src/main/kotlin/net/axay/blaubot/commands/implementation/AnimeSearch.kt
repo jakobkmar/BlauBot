@@ -5,11 +5,12 @@ import dev.kord.core.behavior.interaction.followUp
 import dev.kord.core.entity.interaction.Interaction
 import dev.kord.core.entity.interaction.InteractionCommand
 import dev.kord.core.entity.interaction.string
+import io.ktor.client.request.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.Serializable
 import net.axay.blaubot.commands.api.SlashCommand
-import net.axay.blaubot.utils.httpJson
+import net.axay.blaubot.ktorClient
 import org.apache.commons.lang3.StringUtils
 
 @KordPreview
@@ -26,7 +27,7 @@ object AnimeSearch : SlashCommand(
 
         interaction.ackowledgePublic().followUp {
             val animeSearchResult = withContext(Dispatchers.IO) {
-                httpJson<Array<AnimeSearchResult>>("https://kitsu.io/api/edge/anime?filter[text]=$searchterm")
+                ktorClient.get<Array<AnimeSearchResult>>("https://kitsu.io/api/edge/anime?filter[text]=$searchterm")
             }.firstOrNull()
 
             if (animeSearchResult != null) {

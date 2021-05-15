@@ -4,11 +4,12 @@ import dev.kord.common.annotation.KordPreview
 import dev.kord.core.behavior.interaction.followUp
 import dev.kord.core.entity.interaction.Interaction
 import dev.kord.core.entity.interaction.InteractionCommand
+import io.ktor.client.request.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.Serializable
 import net.axay.blaubot.commands.api.SlashCommand
-import net.axay.blaubot.utils.httpJson
+import net.axay.blaubot.ktorClient
 
 @KordPreview
 object Fox : SlashCommand(
@@ -18,7 +19,7 @@ object Fox : SlashCommand(
     override suspend fun execute(interaction: Interaction, command: InteractionCommand) {
         interaction.ackowledgePublic().followUp {
             content = withContext(Dispatchers.IO) {
-                httpJson<RandomFox>("https://randomfox.ca/floof/").image
+                ktorClient.get<RandomFox>("https://randomfox.ca/floof/").image
             }
         }
     }
