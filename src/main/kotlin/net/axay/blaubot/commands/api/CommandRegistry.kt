@@ -22,7 +22,7 @@ object CommandRegistry {
         }
         launch {
             kord.globalCommands.collect {
-                if (!registeredCommands.containsKey(it.name))
+                if (!registeredCommands.containsKey(it.name) || registeredCommands[it.name]?.test == true)
                     it.delete()
             }
         }
@@ -36,7 +36,7 @@ object CommandRegistry {
             }
             launch {
                 testguild.commands.collect {
-                    if (!registeredCommands.containsKey(it.name))
+                    if (!registeredCommands.containsKey(it.name) || registeredCommands[it.name]?.test == false)
                         it.delete()
                 }
             }
