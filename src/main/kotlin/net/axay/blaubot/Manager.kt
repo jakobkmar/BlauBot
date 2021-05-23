@@ -23,6 +23,7 @@ suspend fun main() {
 
     val bot = Kord(token)
 
+    Sogga
     AnimeSearch
     Bingus
     ChatCommand
