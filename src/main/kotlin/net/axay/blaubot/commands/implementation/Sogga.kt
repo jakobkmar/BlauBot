@@ -7,9 +7,9 @@ import dev.kord.core.entity.interaction.InteractionCommand
 import net.axay.blaubot.commands.api.SlashCommand
 
 @KordPreview
-object Sogga : SlashCommand (
+object Sogga : SlashCommand(
     "sogga",
-    "Shows sogga to you"
+    "Shows sogga to you",
 ) {
     private val soggaImages = listOf(
         "https://i.kym-cdn.com/entries/icons/original/000/036/896/soggacover.jpg",
@@ -22,10 +22,8 @@ object Sogga : SlashCommand (
             embed {
                 title = "Sogga"
                 image = soggaImages.random()
-                description = "Sogga is an extension meme of Floppa. Both charakters are often used in the same way"
+                description = "Sogga is an extension meme of Floppa. Both characters are often used in the same way."
             }
         }
     }
-
-
 }
