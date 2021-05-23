@@ -1,10 +1,12 @@
 package net.axay.blaubot.commands.implementation
 
+import dev.kord.common.annotation.KordPreview
 import dev.kord.core.behavior.interaction.followUp
 import dev.kord.core.entity.interaction.Interaction
 import dev.kord.core.entity.interaction.InteractionCommand
 import net.axay.blaubot.commands.api.SlashCommand
 
+@KordPreview
 object Sogga : SlashCommand (
     "sogga",
     "Shows sogga to you"
@@ -19,7 +21,7 @@ object Sogga : SlashCommand (
         interaction.ackowledgePublic().followUp {
             embed {
                 title = "Sogga"
-                image = Sogga.soggaImages.random()
+                image = soggaImages.random()
                 description = "Sogga is an extension meme of Floppa. Both charakters are often used in the same way"
             }
         }
