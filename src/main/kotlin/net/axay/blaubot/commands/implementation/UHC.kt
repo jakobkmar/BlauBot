@@ -12,7 +12,7 @@ import net.axay.blaubot.commands.api.SlashCommand
 @KordPreview
 object UHC : SlashCommand(
     "uhc",
-    "Allows you to chat via the bot",
+    "Creates an automatic UHC Alert",
     {
         string("host", "Host des UHC's")
         string("time", "Start-zeit")
