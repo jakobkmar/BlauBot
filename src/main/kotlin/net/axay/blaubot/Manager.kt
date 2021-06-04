@@ -22,7 +22,6 @@ suspend fun main() {
         ?: error("Configure the application before running it")
 
     val bot = Kord(token)
-
     Sogga
     AnimeSearch
     Bingus
@@ -30,11 +29,11 @@ suspend fun main() {
     Contribute
     Dice
     Floppa
+    UHC
     Fox
     Ping
     PlayerSkin
     RandomAnime
-
     CommandRegistry.applyToBot(bot)
 
     println("Logging in...")
