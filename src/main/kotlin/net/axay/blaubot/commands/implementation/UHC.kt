@@ -49,3 +49,4 @@ object UHC : SlashCommand(
         }
     }
 }
+
