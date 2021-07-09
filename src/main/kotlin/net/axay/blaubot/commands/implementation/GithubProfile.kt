@@ -21,7 +21,7 @@ object GithubProfile : SlashCommand(
                 val user = command.options["user"]?.string().orEmpty()
                 title = user
                 description = "This is the profile of $user"
-                image = "http://api.vollkorn.me/githubUser/?user=$user"
+                image = "https://api.vollkorn.me/githubUser/?user=$user"
             }
         }
     }
