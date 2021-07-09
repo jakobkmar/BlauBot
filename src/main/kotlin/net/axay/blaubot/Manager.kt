@@ -34,6 +34,7 @@ suspend fun main() {
     Ping
     PlayerSkin
     RandomAnime
+    GithubProfile
 
     CommandRegistry.applyToBot(bot)
 
