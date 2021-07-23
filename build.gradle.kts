@@ -4,8 +4,8 @@ group = "net.axay"
 version = "0.0.1"
 
 plugins {
-    kotlin("jvm") version "1.5.21"
-    kotlin("plugin.serialization") version "1.5.21"
+    kotlin("jvm") version "1.4.32"
+    kotlin("plugin.serialization") version "1.4.32"
 
     application
 }
@@ -20,7 +20,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.3")
 
     implementation("dev.kord:kord-core:0.7.0-RC3")
-    implementation("dev.kord.x:emoji:0.5.0")
+    implementation("dev.kord.x:emoji:0.5.0-SNAPSHOT")
 
     implementation("io.github.config4k:config4k:0.4.2")
 
