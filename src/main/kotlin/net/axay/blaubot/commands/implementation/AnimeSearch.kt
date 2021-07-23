@@ -2,9 +2,10 @@ package net.axay.blaubot.commands.implementation
 
 import dev.kord.common.annotation.KordPreview
 import dev.kord.core.behavior.interaction.followUp
-import dev.kord.core.entity.interaction.Interaction
+import dev.kord.core.entity.interaction.CommandInteraction
 import dev.kord.core.entity.interaction.InteractionCommand
 import dev.kord.core.entity.interaction.string
+import dev.kord.rest.builder.interaction.embed
 import io.ktor.client.request.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -22,10 +23,10 @@ object AnimeSearch : SlashCommand(
     },
     test = true
 ) {
-    override suspend fun execute(interaction: Interaction, command: InteractionCommand) {
+    override suspend fun execute(interaction: CommandInteraction, command: InteractionCommand) {
         val searchterm = command.options["searchterm"]?.string().orEmpty()
 
-        interaction.ackowledgePublic().followUp {
+        interaction.acknowledgePublic().followUp {
             val animeSearchResult = withContext(Dispatchers.IO) {
                 ktorClient.get<Array<AnimeSearchResult>>("https://kitsu.io/api/edge/anime?filter[text]=$searchterm")
             }.firstOrNull()

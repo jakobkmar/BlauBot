@@ -2,8 +2,9 @@ package net.axay.blaubot.commands.implementation
 
 import dev.kord.common.annotation.KordPreview
 import dev.kord.core.behavior.interaction.followUp
-import dev.kord.core.entity.interaction.Interaction
+import dev.kord.core.entity.interaction.CommandInteraction
 import dev.kord.core.entity.interaction.InteractionCommand
+import dev.kord.rest.builder.interaction.embed
 import net.axay.blaubot.commands.api.SlashCommand
 
 @KordPreview
@@ -17,8 +18,8 @@ object Floppa : SlashCommand(
         "https://media.tenor.com/images/09f2bba19bd9615695b856c0f1235a36/tenor.gif",
     )
 
-    override suspend fun execute(interaction: Interaction, command: InteractionCommand) {
-        interaction.ackowledgePublic().followUp {
+    override suspend fun execute(interaction: CommandInteraction, command: InteractionCommand) {
+        interaction.acknowledgePublic().followUp {
             embed {
                 title = "Floppa"
                 image = floppaImages.random()
