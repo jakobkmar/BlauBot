@@ -9,6 +9,7 @@ import io.ktor.client.features.json.serializer.*
 import net.axay.blaubot.commands.api.CommandRegistry
 import net.axay.blaubot.commands.implementation.*
 import net.axay.blaubot.config.ConfigManager
+import net.axay.blaubot.events.MikasaMessageEvent
 
 val ktorClient = HttpClient(CIO) {
     install(JsonFeature) {
@@ -35,6 +36,8 @@ suspend fun main() {
     PlayerSkin
     RandomAnime
     GithubProfile
+
+    MikasaMessageEvent.enable(bot)
 
     CommandRegistry.applyToBot(bot)
 
