@@ -4,8 +4,8 @@ group = "net.axay"
 version = "0.0.1"
 
 plugins {
-    kotlin("jvm") version "1.4.32"
-    kotlin("plugin.serialization") version "1.4.32"
+    kotlin("jvm") version "1.5.21"
+    kotlin("plugin.serialization") version "1.5.21"
 
     application
 }
@@ -17,14 +17,14 @@ repositories {
 
 dependencies {
     implementation(kotlin("reflect"))
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.3")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.1")
 
-    implementation("dev.kord:kord-core:0.7.0-RC3")
-    implementation("dev.kord.x:emoji:0.5.0-SNAPSHOT")
+    implementation("dev.kord:kord-core:0.7.4")
+    implementation("dev.kord.x:emoji:0.5.0")
 
     implementation("io.github.config4k:config4k:0.4.2")
 
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.1.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.2")
 
     implementation("org.slf4j:slf4j-simple:1.7.30")
 
@@ -35,9 +35,13 @@ application {
     mainClass.set("net.axay.blaubot.ManagerKt")
 }
 
-tasks.withType<KotlinCompile> {
-    kotlinOptions.jvmTarget = "11"
-}
+tasks {
+    withType<KotlinCompile> {
+        kotlinOptions.jvmTarget = "11"
+    }
 
-java.sourceCompatibility = JavaVersion.VERSION_11
-java.targetCompatibility = JavaVersion.VERSION_11
+    withType<JavaCompile> {
+        options.release.set(11)
+        options.encoding = "UTF-8"
+    }
+}
