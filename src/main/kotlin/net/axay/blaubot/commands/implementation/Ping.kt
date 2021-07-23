@@ -2,7 +2,7 @@ package net.axay.blaubot.commands.implementation
 
 import dev.kord.common.annotation.KordPreview
 import dev.kord.core.behavior.interaction.followUp
-import dev.kord.core.entity.interaction.Interaction
+import dev.kord.core.entity.interaction.CommandInteraction
 import dev.kord.core.entity.interaction.InteractionCommand
 import dev.kord.x.emoji.Emojis
 import net.axay.blaubot.commands.api.SlashCommand
@@ -13,9 +13,9 @@ object Ping : SlashCommand(
     "ping",
     "Play table tennis with the bot"
 ) {
-    override suspend fun execute(interaction: Interaction, command: InteractionCommand) {
+    override suspend fun execute(interaction: CommandInteraction, command: InteractionCommand) {
         val peng = Random.nextInt(6) == 1
-        interaction.ackowledgePublic().followUp {
+        interaction.acknowledgePublic().followUp {
             content = if (peng) "Peng!" else "${Emojis.pingPong}"
         }
         if (peng)

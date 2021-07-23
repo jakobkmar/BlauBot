@@ -3,8 +3,9 @@ package net.axay.blaubot.commands.implementation
 import dev.kord.common.annotation.KordPreview
 import dev.kord.core.behavior.channel.createEmbed
 import dev.kord.core.behavior.interaction.followUp
-import dev.kord.core.entity.interaction.Interaction
+import dev.kord.core.entity.interaction.CommandInteraction
 import dev.kord.core.entity.interaction.InteractionCommand
+import dev.kord.rest.builder.interaction.embed
 import dev.kord.x.emoji.Emojis
 import kotlinx.coroutines.delay
 import net.axay.blaubot.commands.api.SlashCommand
@@ -23,8 +24,8 @@ object Dice : SlashCommand(
         Emojis.six,
     )
 
-    override suspend fun execute(interaction: Interaction, command: InteractionCommand) {
-        val ack = interaction.ackowledgePublic()
+    override suspend fun execute(interaction: CommandInteraction, command: InteractionCommand) {
+        val ack = interaction.acknowledgePublic()
 
         val loadingImg = interaction.channel.createEmbed {
             image = "https://www.animierte-gifs.net/data/media/710/animiertes-wuerfel-bild-0104.gif"

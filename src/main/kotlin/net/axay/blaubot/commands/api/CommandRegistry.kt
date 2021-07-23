@@ -4,6 +4,7 @@ import dev.kord.common.annotation.KordPreview
 import dev.kord.common.entity.Snowflake
 import dev.kord.core.Kord
 import dev.kord.core.behavior.createApplicationCommand
+import dev.kord.core.entity.interaction.CommandInteraction
 import dev.kord.core.event.interaction.InteractionCreateEvent
 import dev.kord.core.on
 import kotlinx.coroutines.coroutineScope
@@ -43,7 +44,8 @@ object CommandRegistry {
         }
 
         kord.on<InteractionCreateEvent> {
-            registeredCommands[interaction.command.rootName]?.execute(interaction, interaction.command)
+            val commandInteraction = interaction as? CommandInteraction ?: return@on
+            registeredCommands[commandInteraction.command.rootName]?.execute(commandInteraction, commandInteraction.command)
         }
     }
 }

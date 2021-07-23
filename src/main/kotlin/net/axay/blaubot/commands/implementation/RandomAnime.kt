@@ -2,8 +2,9 @@ package net.axay.blaubot.commands.implementation
 
 import dev.kord.common.annotation.KordPreview
 import dev.kord.core.behavior.interaction.followUp
-import dev.kord.core.entity.interaction.Interaction
+import dev.kord.core.entity.interaction.CommandInteraction
 import dev.kord.core.entity.interaction.InteractionCommand
+import dev.kord.rest.builder.interaction.embed
 import dev.kord.x.emoji.Emojis
 import net.axay.blaubot.commands.api.SlashCommand
 
@@ -12,8 +13,8 @@ object RandomAnime : SlashCommand(
     "randomanime",
     "Picks a random anime from a predefined list"
 ) {
-    override suspend fun execute(interaction: Interaction, command: InteractionCommand) {
-        interaction.ackowledgePublic().followUp {
+    override suspend fun execute(interaction: CommandInteraction, command: InteractionCommand) {
+        interaction.acknowledgePublic().followUp {
             embed {
                 title = "Der Zufall entscheidet - Welcher Anime?"
                 field {

@@ -2,7 +2,7 @@ package net.axay.blaubot.commands.implementation
 
 import dev.kord.common.annotation.KordPreview
 import dev.kord.core.behavior.interaction.followUp
-import dev.kord.core.entity.interaction.Interaction
+import dev.kord.core.entity.interaction.CommandInteraction
 import dev.kord.core.entity.interaction.InteractionCommand
 import io.ktor.client.request.*
 import kotlinx.coroutines.Dispatchers
@@ -16,8 +16,8 @@ object Fox : SlashCommand(
     "fox",
     "Shows a cool fox for your enjoyment"
 ) {
-    override suspend fun execute(interaction: Interaction, command: InteractionCommand) {
-        interaction.ackowledgePublic().followUp {
+    override suspend fun execute(interaction: CommandInteraction, command: InteractionCommand) {
+        interaction.acknowledgePublic().followUp {
             content = withContext(Dispatchers.IO) {
                 ktorClient.get<RandomFox>("https://randomfox.ca/floof/").image
             }

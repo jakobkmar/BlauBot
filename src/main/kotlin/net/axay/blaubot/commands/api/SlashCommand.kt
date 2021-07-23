@@ -1,7 +1,7 @@
 package net.axay.blaubot.commands.api
 
 import dev.kord.common.annotation.KordPreview
-import dev.kord.core.entity.interaction.Interaction
+import dev.kord.core.entity.interaction.CommandInteraction
 import dev.kord.core.entity.interaction.InteractionCommand
 import dev.kord.rest.builder.interaction.ApplicationCommandCreateBuilder
 
@@ -17,5 +17,5 @@ abstract class SlashCommand(
         CommandRegistry.registeredCommands[name] = this
     }
 
-    abstract suspend fun execute(interaction: Interaction, command: InteractionCommand)
+    abstract suspend fun execute(interaction: CommandInteraction, command: InteractionCommand)
 }
