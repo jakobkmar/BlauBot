@@ -35,6 +35,7 @@ suspend fun main() {
     PlayerSkin
     RandomAnime
     GithubProfile
+    NameHistory
 
     CommandRegistry.applyToBot(bot)
 
