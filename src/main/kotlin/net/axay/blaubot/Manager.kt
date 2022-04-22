@@ -8,6 +8,7 @@ import io.ktor.client.features.json.*
 import io.ktor.client.features.json.serializer.*
 import net.axay.blaubot.commands.api.CommandRegistry
 import net.axay.blaubot.commands.implementation.*
+import net.axay.blaubot.commands.implementation.searchMod.Search
 import net.axay.blaubot.config.ConfigManager
 
 val ktorClient = HttpClient(CIO) {
@@ -35,6 +36,7 @@ suspend fun main() {
     PlayerSkin
     RandomAnime
     GithubProfile
+    Search
 
     CommandRegistry.applyToBot(bot)
 
